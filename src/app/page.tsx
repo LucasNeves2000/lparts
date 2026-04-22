@@ -11,24 +11,19 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
 const productCategories = [
   {
     title: "Dentes",
-    items: ["A80", "A90", "A110", "A130"],
+    items: ["PC200", "Cat linha J", "Hyundai", "Sany", "Doosan"],
     description: "Peças de desgaste para manter a frente de serviço rendendo.",
   },
   {
     title: "Material rodante",
-    items: ["Roletes", "Correntes", "Sapatas", "Rodas guias"],
+    items: ["Rolete superior", "Rolete inferior", "Roda guia", "Roda motriz", "Corrente 49 elos", "Corrente 46 elos", "Corrente 44 elos"],
     description: "Conjunto robusto para encarar operação pesada sem parada desnecessária.",
   },
   {
     title: "Componentes hidráulicos",
-    items: ["Bombas", "Mangueiras", "Reparos", "Vedações"],
+    items: ["Bombas"],
     description: "Soluções para manter força, precisão e ritmo no canteiro.",
-  },
-  {
-    title: "Filtros e óleo",
-    items: ["Motor", "Hidráulico", "Lubrificantes", "Manutenção preventiva"],
-    description: "Itens essenciais para proteger a máquina e evitar prejuízo.",
-  },
+  }
 ];
 
 const highlights = [
@@ -182,13 +177,17 @@ export default function Home() {
         <div className="products-grid">
           {productCategories.map((category) => (
             <article className="product-card" key={category.title}>
-              <span className="card-index">{category.title}</span>
-              <p>{category.description}</p>
-              <ul>
-                {category.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              <div className="card-heading">
+                <span className="card-index">{category.title}</span>
+                <p>{category.description}</p>
+              </div>
+              <div className="card-body">
+                <ul>
+                  {category.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
               <a href={whatsappUrl} target="_blank" rel="noreferrer">
                 Solicitar cotação
               </a>

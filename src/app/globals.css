@@ -352,12 +352,22 @@ a {
 }
 
 .products-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(240px, 320px));
+  justify-content: center;
+  align-items: stretch;
 }
 
 .product-card {
   display: grid;
-  gap: 16px;
+  grid-template-rows: auto 1fr auto;
+  gap: 18px;
+  height: 100%;
+}
+
+.card-heading {
+  display: grid;
+  gap: 8px;
+  align-content: start;
 }
 
 .card-index {
@@ -368,10 +378,28 @@ a {
   letter-spacing: 0.06em;
 }
 
+.card-heading p {
+  margin: 0;
+}
+
+.card-body {
+  display: grid;
+  align-items: center;
+}
+
 .product-card ul,
 .trust-panel ul {
   display: grid;
   gap: 10px;
+}
+
+.product-card ul {
+  margin: 0;
+  align-content: center;
+}
+
+.product-card a {
+  margin-top: auto;
 }
 
 .about-layout {
@@ -426,9 +454,12 @@ a {
   .hero,
   .about-layout,
   .contact-panel,
-  .quick-strip,
-  .products-grid {
+  .quick-strip {
     grid-template-columns: 1fr;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .topbar {
@@ -490,7 +521,16 @@ a {
 
   .nav-cta {
     min-height: 48px;
-    box-shadow: 0 14px 30px rgba(255, 191, 31, 0.18);
+    background: linear-gradient(135deg, #ffd75a, #ffbf1f);
+    color: #080808;
+    border-color: rgba(255, 215, 90, 0.7);
+    box-shadow:
+      0 14px 30px rgba(255, 191, 31, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-copy,
