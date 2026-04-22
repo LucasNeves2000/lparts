@@ -431,6 +431,7 @@ a {
 
 .contact-logo {
   width: min(180px, 100%);
+  margin-inline: auto;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 211, 77, 0.22);
@@ -559,7 +560,14 @@ a {
   }
 
   .highlight-list {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     justify-items: start;
+  }
+
+  .highlight-list li {
+    text-align: left;
   }
 
   .quick-strip strong,
