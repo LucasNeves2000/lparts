@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-const whatsappNumber = "5500000000000";
+const whatsappNumber = "5541987438260";
+const phoneDisplay = "+55 41 98743-8260";
 const whatsappMessage =
   "Olá! Quero falar com a LParts sobre peças para escavadeira.";
 
@@ -250,7 +251,7 @@ export default function Home() {
               Chamar no WhatsApp
             </a>
             <p>
-              <strong>Telefone:</strong> (00) 00000-0000
+              <strong>Telefone:</strong> {phoneDisplay}
             </p>
             <p>
               <strong>Localização:</strong> Atendimento em todo o Brasil
