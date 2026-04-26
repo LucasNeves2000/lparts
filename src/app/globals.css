@@ -257,6 +257,7 @@ a {
 
 .hero-visual {
   position: relative;
+  min-height: 440px;
   padding: 28px;
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -278,6 +279,34 @@ a {
   filter: blur(12px);
 }
 
+.hero-carousel {
+  position: relative;
+  min-height: 384px;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: space-between;
+  gap: 18px;
+  opacity: 0;
+  transform: translateX(24px) scale(0.98);
+  animation: hero-slide-rotate 18s infinite;
+}
+
+.hero-slide-primary {
+  animation-delay: 0s;
+}
+
+.hero-slide-shipping {
+  animation-delay: 6s;
+}
+
+.hero-slide-support {
+  animation-delay: 12s;
+}
+
 .hero-badge {
   position: absolute;
   top: 20px;
@@ -289,6 +318,29 @@ a {
   border-radius: 16px;
   background: rgba(17, 17, 17, 0.88);
   backdrop-filter: blur(8px);
+}
+
+.hero-slide-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 280px;
+  margin-top: 14px;
+}
+
+.hero-slide-tag {
+  margin: 0 0 10px;
+  color: var(--primary-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-slide-copy h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  line-height: 1.08;
+  text-transform: uppercase;
 }
 
 .hero-badge strong,
@@ -310,6 +362,49 @@ a {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.excavator-motion {
+  animation: excavator-drive 4.8s ease-in-out infinite;
+}
+
+.excavator-arm {
+  transform-origin: 372px 180px;
+  animation: excavator-arm-swing 3.2s ease-in-out infinite;
+}
+
+.wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wheel-spin 2s linear infinite;
+}
+
+.delivery-truck {
+  animation: truck-move 4.4s ease-in-out infinite;
+}
+
+.route-path {
+  animation: route-flow 3s linear infinite;
+}
+
+.shipping-box {
+  animation: box-float 3.6s ease-in-out infinite;
+}
+
+.box-two {
+  animation-delay: 1.2s;
+}
+
+.chat-bubble {
+  animation: bubble-float 3.8s ease-in-out infinite;
+}
+
+.bubble-right {
+  animation-delay: 0.8s;
+}
+
+.parts-stack {
+  animation: stack-pulse 2.8s ease-in-out infinite;
 }
 
 .quick-strip,
@@ -476,6 +571,7 @@ a {
 
   .hero-visual {
     order: -1;
+    min-height: 400px;
   }
 
   .brand-wrap {
@@ -586,6 +682,34 @@ a {
     border-radius: 20px;
   }
 
+  .hero-visual {
+    min-height: 360px;
+  }
+
+  .hero-carousel {
+    min-height: 320px;
+  }
+
+  .hero-slide-copy {
+    max-width: 220px;
+    margin-top: 0;
+  }
+
+  .hero-slide-copy h3 {
+    font-size: 1rem;
+  }
+
+  .hero-badge {
+    top: 16px;
+    right: 16px;
+    max-width: 156px;
+    padding: 12px 14px;
+  }
+
+  .hero-badge span {
+    font-size: 0.82rem;
+  }
+
   .floating-whatsapp {
     left: 12px;
     right: 12px;
@@ -610,5 +734,128 @@ a {
   .section h2,
   .contact-panel h2 {
     font-size: clamp(1.75rem, 8.5vw, 2.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-slide,
+  .excavator-motion,
+  .excavator-arm,
+  .wheel,
+  .delivery-truck,
+  .route-path,
+  .shipping-box,
+  .chat-bubble,
+  .parts-stack {
+    animation: none;
+  }
+
+  .hero-slide {
+    opacity: 0;
+    transform: none;
+  }
+
+  .hero-slide-primary {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-slide-rotate {
+  0%,
+  27% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  31%,
+  100% {
+    opacity: 0;
+    transform: translateX(24px) scale(0.98);
+  }
+}
+
+@keyframes excavator-drive {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(16px);
+  }
+}
+
+@keyframes excavator-arm-swing {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes wheel-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes truck-move {
+  0%,
+  100% {
+    transform: translateX(-8px);
+  }
+
+  50% {
+    transform: translateX(16px);
+  }
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -68;
+  }
+}
+
+@keyframes box-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes bubble-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes stack-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
   }
 }
