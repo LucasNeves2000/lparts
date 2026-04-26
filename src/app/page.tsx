@@ -52,31 +52,44 @@ function ExcavatorIllustration() {
           <stop offset="0%" stopColor="#ffd34d" />
           <stop offset="100%" stopColor="#ffb800" />
         </linearGradient>
+        <linearGradient id="cabGlow" x1="0%" x2="100%" y1="0%" y2="100%">
+          <stop offset="0%" stopColor="#ffe186" />
+          <stop offset="100%" stopColor="#ffb800" />
+        </linearGradient>
       </defs>
 
       <rect x="0" y="320" width="640" height="100" fill="#121212" />
       <g className="excavator-motion">
-        <rect x="210" y="210" width="170" height="72" rx="12" fill="#1c1c1c" stroke="#ffd34d" strokeWidth="6" />
-        <rect x="280" y="145" width="104" height="80" rx="10" fill="#ffb800" />
-        <rect x="298" y="160" width="58" height="42" rx="8" fill="#2d2d2d" />
+        <ellipse cx="304" cy="300" rx="118" ry="18" fill="rgba(0, 0, 0, 0.26)" />
+        <rect x="196" y="238" width="194" height="48" rx="16" fill="#1c1c1c" stroke="#ffd34d" strokeWidth="6" />
+        <path d="M 214 238 H 372 L 352 204 H 236 Z" fill="#2a2a2a" stroke="#ffd34d" strokeWidth="5" />
+        <path d="M 262 148 H 352 Q 374 148 384 166 V 214 H 244 V 166 Q 248 154 262 148 Z" fill="url(#cabGlow)" />
+        <path d="M 286 160 H 340 Q 352 160 358 170 V 202 H 274 V 170 Q 278 162 286 160 Z" fill="#2d2d2d" />
+        <path d="M 328 160 V 202" stroke="#5a5a5a" strokeWidth="4" />
+        <rect x="246" y="214" width="144" height="20" rx="10" fill="#ffb800" />
+        <circle cx="230" cy="232" r="11" fill="#ffd34d" />
         <g className="excavator-arm">
-          <path d="M 372 180 L 468 132 L 516 148 L 425 202 Z" fill="#ffb800" />
-          <path d="M 508 145 L 562 108 L 585 126 L 523 164 Z" fill="#ffd34d" />
-          <path d="M 573 112 L 622 68 L 632 88 L 585 128 Z" fill="#ffb800" />
-          <path d="M 621 68 L 638 58 L 632 118 L 612 122 Z" fill="#1b1b1b" />
+          <circle cx="384" cy="190" r="12" fill="#ffd34d" />
+          <path d="M 386 182 L 466 138 L 520 154 L 436 204 Z" fill="#ffb800" />
+          <path d="M 454 145 L 468 132 L 516 148 L 502 162 Z" fill="#ffd75a" opacity="0.85" />
+          <path d="M 510 150 L 565 112 L 590 130 L 526 170 Z" fill="#ffd34d" />
+          <path d="M 408 194 L 448 164" stroke="#4f4f4f" strokeWidth="6" strokeLinecap="round" />
+          <path d="M 528 154 L 556 132" stroke="#5a5a5a" strokeWidth="5" strokeLinecap="round" />
+          <g className="excavator-bucket">
+            <path d="M 578 114 L 624 74 L 636 92 L 590 132 Z" fill="#ffb800" />
+            <path d="M 621 74 L 638 64 L 634 122 L 610 126 Z" fill="#1b1b1b" />
+          </g>
         </g>
-        <path d="M 214 282 H 392" stroke="#ffd34d" strokeWidth="12" strokeLinecap="round" />
-        <circle className="wheel wheel-left" cx="250" cy="282" r="42" fill="#111111" stroke="#4a4a4a" strokeWidth="16" />
-        <circle className="wheel wheel-right" cx="350" cy="282" r="42" fill="#111111" stroke="#4a4a4a" strokeWidth="16" />
+        <rect x="204" y="270" width="182" height="26" rx="13" fill="#101010" stroke="#3f3f3f" strokeWidth="6" />
+        <path d="M 218 283 H 372" stroke="#ffd34d" strokeWidth="8" strokeLinecap="round" />
+        <circle className="wheel wheel-left" cx="244" cy="283" r="32" fill="#111111" stroke="#4a4a4a" strokeWidth="14" />
+        <circle className="wheel wheel-mid" cx="294" cy="283" r="32" fill="#111111" stroke="#4a4a4a" strokeWidth="14" />
+        <circle className="wheel wheel-right" cx="344" cy="283" r="32" fill="#111111" stroke="#4a4a4a" strokeWidth="14" />
+        <circle cx="244" cy="283" r="8" fill="#ffbf1f" />
+        <circle cx="294" cy="283" r="8" fill="#ffbf1f" />
+        <circle cx="344" cy="283" r="8" fill="#ffbf1f" />
       </g>
 
-      <rect x="56" y="82" width="118" height="74" rx="12" fill="#1a1a1a" stroke="#3f3f3f" strokeWidth="4" />
-      <path d="M 80 130 L 110 102 L 138 128 L 164 100" stroke="url(#metalGlow)" strokeWidth="10" fill="none" strokeLinecap="round" />
-      <rect x="86" y="210" width="78" height="18" rx="9" fill="#3c3c3c" />
-      <rect x="94" y="240" width="62" height="18" rx="9" fill="#3c3c3c" />
-      <rect x="78" y="270" width="94" height="18" rx="9" fill="#3c3c3c" />
-      <circle cx="517" cy="255" r="46" fill="#1a1a1a" stroke="#ffd34d" strokeWidth="8" />
-      <circle cx="517" cy="255" r="14" fill="#ffd34d" />
     </svg>
   );
 }
@@ -97,40 +110,23 @@ function ShippingIllustration() {
       </defs>
 
       <rect x="0" y="0" width="640" height="420" rx="32" fill="rgba(0,0,0,0)" />
-      <path
-        d="M 134 118 C 182 86, 264 76, 324 100 C 394 74, 492 96, 530 156 C 560 202, 548 278, 494 312 C 442 344, 380 338, 326 312 C 252 342, 166 326, 122 272 C 78 218, 80 154, 134 118 Z"
-        fill="rgba(255, 191, 31, 0.08)"
-        stroke="rgba(255, 211, 77, 0.28)"
-        strokeWidth="4"
-      />
+      <g className="shipping-point shipping-point-start">
+        <circle cx="146" cy="286" r="28" fill="#111111" stroke="#ffbf1f" strokeWidth="10" />
+        <circle cx="146" cy="286" r="10" fill="#ffbf1f" />
+      </g>
+      <g className="shipping-point shipping-point-end">
+        <circle cx="520" cy="144" r="28" fill="#111111" stroke="#ffbf1f" strokeWidth="10" />
+        <circle cx="520" cy="144" r="10" fill="#ffbf1f" />
+      </g>
       <path
         className="route-path"
-        d="M 176 250 C 230 224, 256 192, 312 202 C 368 212, 392 144, 450 154"
+        d="M 176 274 C 244 258, 296 218, 340 208 C 402 194, 446 156, 488 150"
         fill="none"
         stroke="url(#routeGlow)"
-        strokeWidth="10"
+        strokeWidth="14"
         strokeLinecap="round"
-        strokeDasharray="16 18"
+        pathLength="1"
       />
-      <circle cx="176" cy="250" r="16" fill="#111111" stroke="#ffbf1f" strokeWidth="8" />
-      <circle cx="450" cy="154" r="16" fill="#111111" stroke="#ffbf1f" strokeWidth="8" />
-      <g className="delivery-truck">
-        <rect x="236" y="246" width="146" height="58" rx="16" fill="#ffbf1f" />
-        <rect x="352" y="224" width="74" height="80" rx="16" fill="#ffd75a" />
-        <rect x="370" y="242" width="34" height="26" rx="8" fill="#2d2d2d" />
-        <rect x="252" y="264" width="82" height="12" rx="6" fill="#2d2d2d" opacity="0.58" />
-        <circle cx="276" cy="312" r="24" fill="#111111" stroke="#4a4a4a" strokeWidth="10" />
-        <circle cx="386" cy="312" r="24" fill="#111111" stroke="#4a4a4a" strokeWidth="10" />
-      </g>
-      <g className="shipping-box box-one">
-        <rect x="112" y="120" width="76" height="64" rx="12" fill="#171717" stroke="#ffbf1f" strokeWidth="4" />
-        <path d="M 124 142 H 176" stroke="#ffbf1f" strokeWidth="6" strokeLinecap="round" />
-        <path d="M 150 122 V 182" stroke="#4a4a4a" strokeWidth="4" />
-      </g>
-      <g className="shipping-box box-two">
-        <rect x="466" y="228" width="58" height="50" rx="12" fill="#171717" stroke="#ffd75a" strokeWidth="4" />
-        <path d="M 478 248 H 512" stroke="#ffd75a" strokeWidth="5" strokeLinecap="round" />
-      </g>
     </svg>
   );
 }
@@ -143,27 +139,29 @@ function SupportIllustration() {
       aria-label="Ilustração de atendimento rápido"
       className="hero-illustration support-illustration"
     >
-      <circle cx="180" cy="158" r="96" fill="rgba(255, 191, 31, 0.08)" />
-      <circle cx="470" cy="244" r="120" fill="rgba(255, 191, 31, 0.05)" />
+      <circle cx="168" cy="148" r="112" fill="rgba(255, 191, 31, 0.08)" />
+      <circle cx="486" cy="252" r="136" fill="rgba(255, 191, 31, 0.05)" />
 
       <g className="chat-bubble bubble-left">
-        <rect x="76" y="102" width="198" height="112" rx="26" fill="#171717" stroke="rgba(255, 211, 77, 0.24)" strokeWidth="4" />
-        <path d="M 112 142 H 232" stroke="#ffbf1f" strokeWidth="12" strokeLinecap="round" />
-        <path d="M 112 174 H 210" stroke="#5e574f" strokeWidth="10" strokeLinecap="round" />
-        <path d="M 132 214 L 142 244 L 176 214" fill="#171717" stroke="rgba(255, 211, 77, 0.24)" strokeWidth="4" />
+        <rect x="52" y="88" width="232" height="128" rx="28" fill="#171717" stroke="rgba(255, 211, 77, 0.24)" strokeWidth="4" />
+        <path d="M 96 132 H 238" stroke="#ffbf1f" strokeWidth="14" strokeLinecap="round" />
+        <path d="M 96 170 H 214" stroke="#5e574f" strokeWidth="11" strokeLinecap="round" />
+        <path d="M 96 202 H 188" stroke="#5e574f" strokeWidth="11" strokeLinecap="round" />
+        <path d="M 126 216 L 138 252 L 180 216" fill="#171717" stroke="rgba(255, 211, 77, 0.24)" strokeWidth="4" />
       </g>
 
       <g className="chat-bubble bubble-right">
-        <rect x="330" y="168" width="212" height="122" rx="28" fill="#ffbf1f" />
-        <path d="M 364 208 H 492" stroke="#111111" strokeWidth="12" strokeLinecap="round" />
-        <path d="M 364 240 H 454" stroke="#483f30" strokeWidth="10" strokeLinecap="round" />
-        <path d="M 500 290 L 488 324 L 452 290" fill="#ffbf1f" />
+        <rect x="330" y="154" width="238" height="142" rx="30" fill="#ffbf1f" />
+        <path d="M 368 198 H 514" stroke="#111111" strokeWidth="14" strokeLinecap="round" />
+        <path d="M 368 236 H 476" stroke="#483f30" strokeWidth="11" strokeLinecap="round" />
+        <path d="M 368 268 H 450" stroke="#483f30" strokeWidth="11" strokeLinecap="round" />
+        <path d="M 520 296 L 506 336 L 462 296" fill="#ffbf1f" />
       </g>
 
       <g className="parts-stack">
-        <rect x="220" y="274" width="72" height="16" rx="8" fill="#4a4a4a" />
-        <rect x="206" y="300" width="98" height="16" rx="8" fill="#5b5b5b" />
-        <rect x="230" y="326" width="62" height="16" rx="8" fill="#3b3b3b" />
+        <rect x="198" y="276" width="102" height="18" rx="9" fill="#4a4a4a" />
+        <rect x="184" y="304" width="132" height="18" rx="9" fill="#5b5b5b" />
+        <rect x="214" y="332" width="88" height="18" rx="9" fill="#3b3b3b" />
       </g>
     </svg>
   );
@@ -236,37 +234,43 @@ export default function Home() {
         <div className="hero-visual">
           <div className="hero-carousel" aria-label="Destaques da LParts">
             <article className="hero-slide hero-slide-primary">
-              <div className="hero-badge">
-                <strong>Especialistas</strong>
-                <span>em escavadeiras e peças para operação pesada</span>
-              </div>
-              <div className="hero-slide-copy">
-                <p className="hero-slide-tag">Linha amarela</p>
-                <h3>Peças certas para manter a operação em movimento.</h3>
+              <div className="hero-slide-head">
+                <div className="hero-slide-copy">
+                  <p className="hero-slide-tag">Linha amarela</p>
+                  <h3>Peças certas para manter a operação em movimento.</h3>
+                </div>
+                <div className="hero-badge">
+                  <strong>Especialistas</strong>
+                  <span>em escavadeiras e peças para operação pesada</span>
+                </div>
               </div>
               <ExcavatorIllustration />
             </article>
 
             <article className="hero-slide hero-slide-shipping">
-              <div className="hero-badge">
-                <strong>Envio nacional</strong>
-                <span>Curitiba como base, entrega para todo o Brasil</span>
-              </div>
-              <div className="hero-slide-copy">
-                <p className="hero-slide-tag">Logística</p>
-                <h3>Da cotação ao envio, a peça sai com agilidade para chegar onde você precisa.</h3>
+              <div className="hero-slide-head">
+                <div className="hero-slide-copy">
+                  <p className="hero-slide-tag">Logística</p>
+                  <h3>Da cotação ao envio, a peça sai com agilidade para chegar onde você precisa.</h3>
+                </div>
+                <div className="hero-badge">
+                  <strong>Envio nacional</strong>
+                  <span>Curitiba como base, entrega para todo o Brasil</span>
+                </div>
               </div>
               <ShippingIllustration />
             </article>
 
             <article className="hero-slide hero-slide-support">
-              <div className="hero-badge">
-                <strong>Atendimento rápido</strong>
-                <span>WhatsApp direto para agilizar a busca pela peça certa</span>
-              </div>
-              <div className="hero-slide-copy">
-                <p className="hero-slide-tag">Suporte direto</p>
-                <h3>Você manda o modelo da máquina e a LParts corre atrás da solução.</h3>
+              <div className="hero-slide-head">
+                <div className="hero-slide-copy">
+                  <p className="hero-slide-tag">Suporte direto</p>
+                  <h3>Você manda o modelo da máquina e a LParts corre atrás da solução.</h3>
+                </div>
+                <div className="hero-badge">
+                  <strong>Atendimento rápido</strong>
+                  <span>WhatsApp direto para agilizar a busca pela peça certa</span>
+                </div>
               </div>
               <SupportIllustration />
             </article>

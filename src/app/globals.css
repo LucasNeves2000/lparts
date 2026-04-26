@@ -288,11 +288,12 @@ a {
   position: absolute;
   inset: 0;
   display: grid;
-  align-content: space-between;
-  gap: 18px;
+  grid-template-rows: auto 1fr;
+  align-content: stretch;
+  gap: 20px;
   opacity: 0;
   transform: translateX(24px) scale(0.98);
-  animation: hero-slide-rotate 18s infinite;
+  animation: hero-slide-rotate 33s infinite;
 }
 
 .hero-slide-primary {
@@ -300,19 +301,27 @@ a {
 }
 
 .hero-slide-shipping {
-  animation-delay: 6s;
+  animation-delay: 11s;
 }
 
 .hero-slide-support {
-  animation-delay: 12s;
+  animation-delay: 22s;
+}
+
+.hero-slide-head {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.8fr);
+  gap: 18px;
+  align-items: start;
 }
 
 .hero-badge {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 1;
-  max-width: 180px;
+  position: relative;
+  justify-self: end;
+  width: 100%;
+  max-width: 200px;
   padding: 14px 16px;
   border-left: 4px solid var(--primary);
   border-radius: 16px;
@@ -322,9 +331,8 @@ a {
 
 .hero-slide-copy {
   position: relative;
-  z-index: 1;
-  max-width: 280px;
-  margin-top: 14px;
+  max-width: 320px;
+  margin-top: 0;
 }
 
 .hero-slide-tag {
@@ -362,41 +370,49 @@ a {
   width: 100%;
   height: auto;
   display: block;
+  align-self: end;
 }
 
 .excavator-motion {
-  animation: excavator-drive 4.8s ease-in-out infinite;
+  animation: excavator-glide 5.2s linear infinite alternate;
 }
 
 .excavator-arm {
-  transform-origin: 372px 180px;
-  animation: excavator-arm-swing 3.2s ease-in-out infinite;
+  transform-origin: 384px 190px;
+  animation: excavator-arm-lift 1.8s ease-in-out infinite alternate;
+}
+
+.excavator-bucket {
+  transform-origin: 590px 118px;
+  animation: excavator-bucket-dig 1s ease-in-out infinite alternate;
 }
 
 .wheel {
   transform-box: fill-box;
   transform-origin: center;
-  animation: wheel-spin 2s linear infinite;
-}
-
-.delivery-truck {
-  animation: truck-move 4.4s ease-in-out infinite;
+  animation: wheel-spin 0.7s linear infinite;
 }
 
 .route-path {
-  animation: route-flow 3s linear infinite;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: route-draw 33s infinite;
 }
 
-.shipping-box {
-  animation: box-float 3.6s ease-in-out infinite;
+.shipping-point {
+  animation: point-pulse 1.6s ease-in-out infinite alternate;
 }
 
-.box-two {
-  animation-delay: 1.2s;
+.hero-slide-shipping .route-path {
+  animation-delay: 0s;
+}
+
+.shipping-point-end {
+  animation-delay: 0.8s;
 }
 
 .chat-bubble {
-  animation: bubble-float 3.8s ease-in-out infinite;
+  animation: bubble-float 1.4s ease-in-out infinite alternate;
 }
 
 .bubble-right {
@@ -404,7 +420,7 @@ a {
 }
 
 .parts-stack {
-  animation: stack-pulse 2.8s ease-in-out infinite;
+  animation: stack-pulse 1.2s ease-in-out infinite alternate;
 }
 
 .quick-strip,
@@ -574,6 +590,10 @@ a {
     min-height: 400px;
   }
 
+  .hero-slide-head {
+    grid-template-columns: minmax(0, 1fr) 190px;
+  }
+
   .brand-wrap {
     justify-items: center;
     text-align: center;
@@ -690,24 +710,43 @@ a {
     min-height: 320px;
   }
 
+  .hero-slide {
+    gap: 16px;
+  }
+
+  .hero-slide-head {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    justify-items: center;
+  }
+
   .hero-slide-copy {
-    max-width: 220px;
-    margin-top: 0;
+    max-width: none;
+    text-align: center;
   }
 
   .hero-slide-copy h3 {
     font-size: 1rem;
   }
 
+  .excavator-motion {
+    animation-duration: 4.2s;
+  }
+
   .hero-badge {
-    top: 16px;
-    right: 16px;
-    max-width: 156px;
+    justify-self: center;
+    max-width: none;
     padding: 12px 14px;
+    text-align: center;
   }
 
   .hero-badge span {
     font-size: 0.82rem;
+  }
+
+  .hero-illustration {
+    width: min(100%, 520px);
+    margin-inline: auto;
   }
 
   .floating-whatsapp {
@@ -745,10 +784,10 @@ a {
   .hero-slide,
   .excavator-motion,
   .excavator-arm,
+  .excavator-bucket,
   .wheel,
-  .delivery-truck,
   .route-path,
-  .shipping-box,
+  .shipping-point,
   .chat-bubble,
   .parts-stack {
     animation: none;
@@ -766,37 +805,45 @@ a {
 
 @keyframes hero-slide-rotate {
   0%,
-  27% {
+  29% {
     opacity: 1;
     transform: translateX(0) scale(1);
   }
 
-  31%,
+  33.5%,
   100% {
     opacity: 0;
     transform: translateX(24px) scale(0.98);
   }
 }
 
-@keyframes excavator-drive {
-  0%,
-  100% {
-    transform: translateX(0);
+@keyframes excavator-glide {
+  from {
+    transform: translateX(-120px) translateY(4px);
   }
 
-  50% {
-    transform: translateX(16px);
+  to {
+    transform: translateX(170px) translateY(0);
   }
 }
 
-@keyframes excavator-arm-swing {
-  0%,
-  100% {
-    transform: rotate(0deg);
+@keyframes excavator-arm-lift {
+  from {
+    transform: rotate(10deg) translateY(42px);
   }
 
-  50% {
-    transform: rotate(-5deg);
+  to {
+    transform: rotate(-18deg) translateY(-22px);
+  }
+}
+
+@keyframes excavator-bucket-dig {
+  from {
+    transform: rotate(-18deg) translateY(14px);
+  }
+
+  to {
+    transform: rotate(12deg) translateY(-8px);
   }
 }
 
@@ -810,52 +857,48 @@ a {
   }
 }
 
-@keyframes truck-move {
-  0%,
-  100% {
-    transform: translateX(-8px);
+@keyframes point-pulse {
+  from {
+    transform: scale(1);
   }
 
-  50% {
-    transform: translateX(16px);
-  }
-}
-
-@keyframes route-flow {
   to {
-    stroke-dashoffset: -68;
+    transform: scale(1.08);
   }
 }
 
-@keyframes box-float {
+@keyframes route-draw {
   0%,
-  100% {
-    transform: translateY(0);
+  33.2% {
+    stroke-dashoffset: 1;
   }
 
-  50% {
-    transform: translateY(-8px);
+  36.5%,
+  60% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
   }
 }
 
 @keyframes bubble-float {
-  0%,
-  100% {
-    transform: translateY(0);
+  from {
+    transform: translateY(0) scale(1);
   }
 
-  50% {
-    transform: translateY(-10px);
+  to {
+    transform: translateY(-10px) scale(1.02);
   }
 }
 
 @keyframes stack-pulse {
-  0%,
-  100% {
+  from {
     transform: scale(1);
   }
 
-  50% {
+  to {
     transform: scale(1.04);
   }
 }
