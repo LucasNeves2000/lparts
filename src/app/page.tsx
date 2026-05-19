@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const whatsappNumber = "5541987438260";
 const phoneDisplay = "+55 41 98743-8260";
@@ -38,6 +41,8 @@ const trustPoints = [
   "Agilidade para responder e entender sua necessidade",
   "Confiança construída no contato direto e no compromisso com o cliente",
 ];
+
+const heroSlideLabels = ["Linha amarela", "Logística", "Suporte direto"];
 
 function ExcavatorIllustration() {
   return (
@@ -109,24 +114,34 @@ function ShippingIllustration() {
         </linearGradient>
       </defs>
 
+      <clipPath id="shippingRouteReveal">
+        <rect className="route-reveal-mask" x="38" y="0" width="530" height="420" />
+      </clipPath>
       <rect x="0" y="0" width="640" height="420" rx="32" fill="rgba(0,0,0,0)" />
       <g className="shipping-point shipping-point-start">
-        <circle cx="146" cy="286" r="28" fill="#111111" stroke="#ffbf1f" strokeWidth="10" />
-        <circle cx="146" cy="286" r="10" fill="#ffbf1f" />
+        <text x="70" y="318" textAnchor="middle" className="shipping-point-label">
+          LParts
+        </text>
+        <circle cx="70" cy="354" r="28" fill="#111111" stroke="#ffbf1f" strokeWidth="10" />
+        <circle cx="70" cy="354" r="10" fill="#ffbf1f" />
       </g>
       <g className="shipping-point shipping-point-end">
-        <circle cx="520" cy="144" r="28" fill="#111111" stroke="#ffbf1f" strokeWidth="10" />
-        <circle cx="520" cy="144" r="10" fill="#ffbf1f" />
+        <text x="584" y="110" textAnchor="middle" className="shipping-point-label">
+          Você
+        </text>
+        <circle cx="584" cy="150" r="28" fill="#111111" stroke="#ffe186" strokeWidth="10" />
+        <circle cx="584" cy="150" r="10" fill="#ffe186" />
       </g>
-      <path
-        className="route-path"
-        d="M 176 274 C 244 258, 296 218, 340 208 C 402 194, 446 156, 488 150"
-        fill="none"
-        stroke="url(#routeGlow)"
-        strokeWidth="14"
-        strokeLinecap="round"
-        pathLength="1"
-      />
+      <g clipPath="url(#shippingRouteReveal)">
+        <path
+          className="route-path"
+          d="M 102 342 C 154 266, 216 366, 274 292 S 346 164, 410 232 S 470 286, 512 212 C 532 178, 536 154, 552 150"
+          fill="none"
+          stroke="url(#routeGlow)"
+          strokeWidth="14"
+          strokeLinecap="round"
+        />
+      </g>
     </svg>
   );
 }
@@ -168,6 +183,16 @@ function SupportIllustration() {
 }
 
 export default function Home() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const slideTimer = window.setInterval(() => {
+      setActiveSlide((activeSlide + 1) % heroSlideLabels.length);
+    }, 10000);
+
+    return () => window.clearInterval(slideTimer);
+  }, [activeSlide]);
+
   return (
     <main className="page-shell">
       <a className="floating-whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer">
@@ -233,7 +258,11 @@ export default function Home() {
 
         <div className="hero-visual">
           <div className="hero-carousel" aria-label="Destaques da LParts">
-            <article className="hero-slide hero-slide-primary">
+            <article
+              className={`hero-slide hero-slide-primary ${
+                activeSlide === 0 ? "hero-slide-active" : ""
+              }`}
+            >
               <div className="hero-slide-head">
                 <div className="hero-slide-copy">
                   <p className="hero-slide-tag">Linha amarela</p>
@@ -244,10 +273,14 @@ export default function Home() {
                   <span>em escavadeiras e peças para operação pesada</span>
                 </div>
               </div>
-              <ExcavatorIllustration />
+              {activeSlide === 0 ? <ExcavatorIllustration /> : null}
             </article>
 
-            <article className="hero-slide hero-slide-shipping">
+            <article
+              className={`hero-slide hero-slide-shipping ${
+                activeSlide === 1 ? "hero-slide-active" : ""
+              }`}
+            >
               <div className="hero-slide-head">
                 <div className="hero-slide-copy">
                   <p className="hero-slide-tag">Logística</p>
@@ -258,10 +291,14 @@ export default function Home() {
                   <span>Curitiba como base, entrega para todo o Brasil</span>
                 </div>
               </div>
-              <ShippingIllustration />
+              {activeSlide === 1 ? <ShippingIllustration /> : null}
             </article>
 
-            <article className="hero-slide hero-slide-support">
+            <article
+              className={`hero-slide hero-slide-support ${
+                activeSlide === 2 ? "hero-slide-active" : ""
+              }`}
+            >
               <div className="hero-slide-head">
                 <div className="hero-slide-copy">
                   <p className="hero-slide-tag">Suporte direto</p>
@@ -272,8 +309,21 @@ export default function Home() {
                   <span>WhatsApp direto para agilizar a busca pela peça certa</span>
                 </div>
               </div>
-              <SupportIllustration />
+              {activeSlide === 2 ? <SupportIllustration /> : null}
             </article>
+
+            <div className="hero-dots" aria-label="Navegar pelos destaques">
+              {heroSlideLabels.map((label, index) => (
+                <button
+                  key={label}
+                  type="button"
+                  className={activeSlide === index ? "hero-dot hero-dot-active" : "hero-dot"}
+                  onClick={() => setActiveSlide(index)}
+                  aria-label={`Mostrar slide ${label}`}
+                  aria-current={activeSlide === index ? "true" : undefined}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
